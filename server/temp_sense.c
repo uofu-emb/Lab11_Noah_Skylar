@@ -1,5 +1,6 @@
 #include <hardware/adc.h>
 #include "temp_sense.h"
+#include <stdio.h>
 
 #define ADC_CHANNEL_TEMPSENSOR 4
 
@@ -14,6 +15,7 @@ float temperature_poll(void)
 {
     adc_select_input(ADC_CHANNEL_TEMPSENSOR);
     uint32_t raw32 = adc_read();
+    printf("Read adc\n");
     const uint32_t bits = 12;
 
     // Scale raw reading to 16 bit value using a Taylor expansion (for 8 <= bits <= 16)
